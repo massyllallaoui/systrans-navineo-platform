@@ -1,0 +1,33 @@
+name: "Validation Infrastructure Navineo"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  terraform-check:
+    name: "Audit Terraform"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./infra/scaleway
+
+    steps:
+      - name: 📥 Récupération du code
+        uses: actions/checkout@v3
+
+      - name: ⚙️ Installation de Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: "1.5.0"
+
+      - name: 🔍 Initialisation
+        run: terraform init -backend=false
+
+      - name: 📐 Vérification du formatage (Normes)
+        run: terraform fmt -check
+
+      - name: ✅ Validation mathématique du code
+        run: terraform validate

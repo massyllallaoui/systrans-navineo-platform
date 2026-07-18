@@ -1,0 +1,48 @@
+version: '3.8'
+
+services: 
+  # Interface 1 : Connecteur EasyPark
+  easypark-api:
+    build:
+      context: ./easypark-connector
+    container_name: navineo_easypark
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment: 
+      - EXTERNAL_API_URL=https://api.easypark.net/v1
+      - DB_HOST=${POSTGRES_HOST}
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+    networks:
+      - navineo_bridge 
+  # Interface 2 : Connecteur Filexis
+  filexis-api: 
+    build: 
+      context: ./filexis-connector
+    container-name: navineo_filexis
+    restart: unless-stopped
+    ports: 
+      - "8082:8082"
+    environment: 
+      - DB_HOST=${POSTGRES_HOST}
+      - DB_USER = ${POSTGRES_USER}
+      - DB_PASSWORD = ${POSTGRES_PASSWORD}
+    networks:
+      - navineo_bridge
+  
+  # Interface 3 : Services Siri (VM, ET, GM)
+  siri-service:
+    build:
+      context: ./siri-service
+    container_name: navineo_siri
+    restart: unless-stopped
+    ports: 
+      -"8083:8083"
+    networks: 
+      - navineo_bridge
+  
+  networks: 
+    navineo_bridge:
+      driver: navineo_bridge
+    
