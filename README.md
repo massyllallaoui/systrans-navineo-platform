@@ -1,7 +1,7 @@
 # 🚉 Plateforme d'Interfaçage Navineo - Infrastructure & Déploiement
 
 ## 🎯 Vision du Projet
-Ce dépôt contient l'intégralité du code d'infrastructure (IaC), de l'architecture applicative et de la documentation opérationnelle pour le système d'interfaçage **Navineo**. 
+Ce dépôt contient l'intégralité du code d'infrastructure (IaC), de l'architecture applicative et de la documentation opérationnelle imaginé pour le système d'interfaçage **Navineo**. 
 
 L'objectif est d'assurer une communication sécurisée et hautement disponible entre le cœur Navineo et des prestataires externes (**EasyPark**, **Filexis**, **Services Siri VM/ET/GM**).
 
