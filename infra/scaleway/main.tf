@@ -31,7 +31,7 @@ resource "scaleway_instance_server" "docker_nodes" {
   }
 
   # Cloud-init: Installation de Docker
-  user-data = <<-EOT
+  user_data = <<-EOT
         #!/bin/bash 
         apt-get update -y
         apt-get install -y docker.io docker-compose
