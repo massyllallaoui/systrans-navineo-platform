@@ -25,7 +25,7 @@ resource "scaleway_instance_server" "docker_nodes" {
   name  = "navineo-node-${format("%02d", count.index + 1)}"
   type  = "DEV1-S" # Format économique pour dev/test (2 CPU, 4GB RAM, 20GB SSD)
   image = "ubuntu_jammy"
-
+}
   private_network {
     pn_id = scaleway_vpc_private_network.navineo_vpc.id
   }
