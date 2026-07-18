@@ -31,13 +31,14 @@ resource "scaleway_instance_server" "docker_nodes" {
   }
 
   # Cloud-init: Installation de Docker
-  user_data = <<-EOT
-        #!/bin/bash 
-        apt-get update -y
-        apt-get install -y docker.io docker-compose
-        systemctl enable --now docker
-    EOT
-}
+  user_data = {
+    cloud-init = <<-EOT
+                 #!/bin/bash
+                 apt-get update -y
+                 apt-get install -y docker.io docker-compose
+                 systemctl enable --now docker
+                 EOT
+  }
 
 # 3. La Base de Données PostgreSQL
 resource "scaleway_rdb_instance" "navineo_db" {
