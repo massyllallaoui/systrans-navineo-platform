@@ -29,3 +29,6 @@ jobs:
       - name: 📐 Vérification du formatage (Normes)
         run: terraform fmt -check
 
+      - name: ✅ Validation check : 
+        run: terraform validate
+
