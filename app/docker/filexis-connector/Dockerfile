@@ -6,5 +6,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src/ .
 RUN chown -R navineo_user:navineo_user /app
 USER navineo_user
-EXPOSE 8081
+EXPOSE 8082
 CMD ["python", "app.py"]

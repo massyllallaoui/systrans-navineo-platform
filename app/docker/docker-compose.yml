@@ -1,5 +1,3 @@
-version: '3.8'
-
 services: 
   # Interface 1 : Connecteur EasyPark
   easypark-api:
@@ -20,14 +18,14 @@ services:
   filexis-api: 
     build: 
       context: ./filexis-connector
-    container-name: navineo_filexis
+    container_name: navineo_filexis
     restart: unless-stopped
     ports: 
       - "8082:8082"
-    environment: 
+    environment:
       - DB_HOST=${POSTGRES_HOST}
-      - DB_USER = ${POSTGRES_USER}
-      - DB_PASSWORD = ${POSTGRES_PASSWORD}
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
     networks:
       - navineo_bridge
   
@@ -38,11 +36,12 @@ services:
     container_name: navineo_siri
     restart: unless-stopped
     ports: 
-      -"8083:8083"
+      - "8083:8083"
     networks: 
       - navineo_bridge
   
-  networks: 
+networks: 
     navineo_bridge:
-      driver: navineo_bridge
+      driver: bridge
+
     
